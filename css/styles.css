@@ -2,6 +2,8 @@
     --side-width: 400px;
     --bkclr: white;
     --ftclr: black;
+    --displayclr: black;
+    --display-margin: 25px;
 }
 
 body{
@@ -28,11 +30,13 @@ body{
     color: var(--ftclr);
     display: inline-flex;
     flex-direction: column;
-    position: relative;
+    position: sticky;
+    top:0;
     width: var(--side-width);
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
+    height: 100vh;
 
     background: linear-gradient(270deg, #32de84, #00adff);
     background-size: 400% 400%;
@@ -109,4 +113,57 @@ body{
     border-bottom: 2px var(--ftclr) solid;
     
 }
-/* styling css checkbox PAIN! */
+/* styling book display */
+.display-title{
+    color: var(--displayclr);
+    font-family: 'Arvo', serif;
+    font-size: 5rem;
+    text-align: right;
+    margin: var(--display-margin);
+    padding-bottom: 12px;
+    border-bottom: 4px solid var(--displayclr);
+}
+
+.smaller{
+    margin-top: 40px;
+    font-size: 3rem;
+    border-bottom: 2px solid var(--displayclr);
+}
+.book-card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    
+    padding: 25px;
+    padding-bottom: 0;
+    width: 200px;
+    height: 250px;
+    border-radius: 10px;
+
+    box-shadow: 0 5px 10px rgba(23, 23, 24, 0.63), 0 15px 40px rgba(166,173,201,.2);
+}
+.book-info{
+    color: rgb(46, 46, 46);
+}
+.card-img{
+    width: 40px;
+    height: 40px;
+}
+.card-img-cont{
+    text-align: center;
+}
+
+.book-grid-cont{
+    display: inline-block;
+
+}
+
+.grid-main{
+    margin: 0 auto;
+    width: 95%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    justify-items: center; 
+    row-gap: 20px;
+}
+
