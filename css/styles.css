@@ -1,0 +1,112 @@
+:root{
+    --side-width: 400px;
+    --bkclr: white;
+    --ftclr: black;
+}
+
+body{
+    box-sizing: border-box;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 300;
+    color: var(--ftclr);
+    background-color: var(--bkclr);
+}
+
+
+
+/* for show */
+.border{
+    border: 1px red solid;
+}
+.main-cont{
+    display: flex;
+    min-height: 100vh;
+}
+.side-menu{
+    --bkclr: none;
+    --ftclr: white;
+    color: var(--ftclr);
+    display: inline-flex;
+    flex-direction: column;
+    position: relative;
+    width: var(--side-width);
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(270deg, #32de84, #00adff);
+    background-size: 400% 400%;
+    animation: menufade 10s ease infinite;
+}
+
+@keyframes menufade {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+.book-display{
+    width: calc(100vw - var(--side-width));
+}
+.form-card{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+}
+.main-form-label{
+    font-size: 2rem;
+    margin-top: 10px;
+    margin-bottom: 4px;
+}
+.main-form-input{
+    border: none;
+    background-color: var(--bkclr);
+    border-bottom: 1px solid var(--ftclr);
+    padding: 3px;
+    width: 85%;
+    outline: none;
+    font-size: 1rem;
+    font-weight: lighter;
+    color: rgb(56, 56, 56);
+}
+
+.submit-cont{
+    text-align: center;
+    margin-top: 30px;
+}
+.submit-btn{
+    width: 100px;
+    padding: 10px;
+    border: none;
+    background: none;
+    font-weight: bold;
+    color: var(--ftclr);
+    border: 2px var(--ftclr) solid;
+    border-radius: 50px;
+}
+.submit-btn:hover{
+    animation-name: smt-btn-fade;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards; 
+}
+@keyframes smt-btn-fade{
+    0%{
+        background-color: var(--bkclr);
+    }
+    100%{
+        width: 55%;
+        color: white;
+    }
+}
+
+.side-menu-title{
+    font-size: 3em;
+    font-weight: 400;
+}
+#menu-title{
+    position: relative;
+    bottom: 25px;
+    border-bottom: 2px var(--ftclr) solid;
+    
+}
+/* styling css checkbox PAIN! */

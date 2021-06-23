@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DaLibrary</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"> 
+
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script src="js/srcipt.js" defer></script>
+</head>
+<body>
+    <main class="main-cont">
+        <div class="side-menu">
+
+            <div>
+                <div class="side-menu-title">
+                    <h1 id="menu-title">Add A Book</h1>
+                </div>
+
+                <form class="form-card" action="">
+                    <label class="main-form-label" for="bk-ttl">Book Title</label>
+                    <input class="main-form-input" type="text" id="bk-ttl">
+
+                    <label class="main-form-label" for="bk-auth">Book Author</label>
+                    <input class="main-form-input" type="text" id="bk-auth">
+
+                    <label class="main-form-label" for="n-pgn"># of Pages</label>
+                    <input class="main-form-input" type="text" id="n-pgn">
+
+                    <label class="main-form-label chbox" for="dn-rd">Done Reading</label>
+
+                    <div class = "has-read- choice">
+                        <label for="yes">Yes</label>
+                        <input type="radio" id="yes" name="hasRead">
+
+                        <label for="yes">No</label>
+                        <input type="radio" id="no" name="hasRead" checked>
+                    </div>
+
+                    <div class="submit-cont">
+                        <input class="submit-btn" type="Submit" value="Submit">
+                    </div>
+                    
+                </form>
+            </div>
+        </div>
+        <div class="book-display border">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Molestias iste incidunt voluptate magni eveniet suscipit corrupti minus, adipisci vitae placeat quis, quo molestiae saepe impedit, ratione tenetur exercitationem accusamus expedita!
+        </div>
+    </main>
+</body>
+</html>
