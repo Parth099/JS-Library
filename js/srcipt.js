@@ -5,15 +5,15 @@ function book(title, author, pages, isRead){
     this.author = author
     this.pages = pages;
     this.isRead = isRead
-    this.id = id++; //RMDBS !!!
+    this.id = `B${id++}`; //RMDBS !!!
 }
 
 
 //6/24/21
 
 const daLibrary = [
-    new book("Sample Book 1", "Good Question", 12, true),
-    new book("Sample Book 1", "Good Question", 14, false),
+    new book("Divergent", "Veronica Roth", 487 , true),
+    new book("Insurgent ", "Veronica Roth", 525 , false),
 ]
 
 function getLocationToPush(isRead){
@@ -40,6 +40,22 @@ function createBookCardNode(cardInfo, bookInfo){
     return div
 }
 
+function delBook(e){
+    let id = e.target.id
+    let card = document.getElementById(e.target.id)
+    card.remove();
+
+    let delIdx = 0;
+    for(let i = 0; i < daLibrary.length; i++){
+        if(id == daLibrary[i].id){
+            delIdx = i;
+            break;
+        }
+    }
+
+    daLibrary.splice(delIdx, 1)
+}
+
 function createBookCard(B){
     let main = document.createElement("div");
     main.classList.toggle("book-card");
@@ -61,13 +77,19 @@ function createBookCard(B){
 
     delKeyCont.appendChild(delKey) 
     main.appendChild(delKeyCont)
+
+    delKey.setAttribute('id', `${B.id}`)
+    main.setAttribute('id', `${B.id}`)
+    //events
+    delKey.addEventListener("click", delBook)
+
     return main
 }
 
 function pushBook(B){
-    let grid = getLocationToPush(B.isRead) //returns location to push book {css - grid}
-    let bookCard = createBookCard(B) //creates a DOM object based on B.keys
-    grid.appendChild(bookCard)
+    let grid = getLocationToPush(B.isRead); //returns location to push book {css - grid}
+    let bookCard = createBookCard(B);//creates a DOM object based on B.keys
+    grid.appendChild(bookCard);
 }
 
 function showBooks(){
@@ -90,11 +112,13 @@ function ValidateBookForm(){
     if(!isBlank(formBookName) && !isBlank(formBookAuth) && !isBlank(formBookPages)){
         let b = new book(formBookName, formBookAuth, formBookPages, formIsRead)
         pushBook(b) //adds book to queue
-        formInfo.setAttribute("display", 'none')
+        daLibrary.push(b)
+        formInfo.style.display = 'none';
     }
     else{
-        formInfo.setAttribute("display", 'relative')
+        formInfo.style.display = 'block';
         formInfo.textContent = "The Form was not filled out properly\ntry Again"
     }
 }
 
+showBooks()

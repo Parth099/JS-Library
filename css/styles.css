@@ -174,12 +174,26 @@ body {
   margin-right: var(--display-margin);
   margin-top: 15px;
   border: 2px var(--ftclr) solid;
-  padding: 5px;
+  padding: 10px;
   border-radius: 10px;
   font-weight: 400;
   display: none;
+  animation-name: warning;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+@keyframes warning {
+    0%{
+        border-color: white(156, 154, 154);
+    }
+    50%{
+        border-color :black;
+    }
+    100%{
+        border-color: white;
+    }
 }
 
-#not-read{
-    margin-bottom: 25px;
+#not-read {
+  margin-bottom: 25px;
 }
