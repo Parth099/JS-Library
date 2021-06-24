@@ -1,10 +1,13 @@
 //book object
+var id = 0;
 function book(title, author, pages, isRead){
     this.title = title;
     this.author = author
     this.pages = pages;
     this.isRead = isRead
+    this.id = id++; //RMDBS !!!
 }
+
 
 //6/24/21
 
@@ -73,4 +76,25 @@ function showBooks(){
     }
 }
 
-showBooks()
+function isBlank(str) {
+    return (!str || /^\s*$/.test(str));
+}
+
+function ValidateBookForm(){
+    let formInfo = document.querySelector(".form-info")
+    const formBookName = document.getElementById("bk-ttl").value;
+    const formBookAuth = document.getElementById("bk-auth").value;
+    const formBookPages = document.getElementById("n-pgn").value;
+    const formIsRead = document.getElementById("yes").checked //logical optimization 
+
+    if(!isBlank(formBookName) && !isBlank(formBookAuth) && !isBlank(formBookPages)){
+        let b = new book(formBookName, formBookAuth, formBookPages, formIsRead)
+        pushBook(b) //adds book to queue
+        formInfo.setAttribute("display", 'none')
+    }
+    else{
+        formInfo.setAttribute("display", 'relative')
+        formInfo.textContent = "The Form was not filled out properly\ntry Again"
+    }
+}
+
