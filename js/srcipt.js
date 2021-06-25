@@ -1,5 +1,6 @@
 //book object
 var id = 0;
+var shiftflag = 0;
 var undo = [];
 function book(title, author, pages, isRead){
     this.title = title;
@@ -70,8 +71,12 @@ function delBook(e){
 
     //array reflection
     let delIdx = findBookById(id)
+
     let u = daLibrary.splice(delIdx, 1)[0]
-    undo.push(u);
+    if(!shiftflag){
+        undo.push(u);
+    }
+    shiftflag = 0;
 }
 
 function shiftBook(e){
@@ -80,7 +85,9 @@ function shiftBook(e){
     copy.isRead = !copy.isRead;
     //copy is made
 
+    shiftflag = 1;
     delBook(e)
+
     //removed from old section
 
     pushBook(copy);
@@ -89,7 +96,8 @@ function shiftBook(e){
 }
 
 function undoDelete(e){
-    if(!undo.length){
+    if(!undo.length || shiftflag){
+        shiftflag = 0;
         return
     }
     let x = undo.splice(undo.length - 1, 1)[0]
