@@ -142,6 +142,7 @@ body {
   width: 200px;
   height: 250px;
   border-radius: 10px;
+  position: relative;
 
   box-shadow: 0 5px 10px rgba(23, 23, 24, 0.63),
     0 15px 40px rgba(166, 173, 201, 0.2);
@@ -196,4 +197,43 @@ body {
 
 #not-read {
   margin-bottom: 25px;
+}
+
+.shiftBook{
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.undo-cont{
+  position: relative;
+}
+#undo{
+  position: absolute;
+  left: var(--display-margin);
+  bottom: 4px;
+  font-weight: 500;
+  font-size: 30px;
+  padding: 5px;
+  padding-bottom: 2px;
+  cursor: pointer;
+}
+
+#undo:hover{
+  animation-name: undo-fade;
+  animation-duration: .5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes undo-fade {
+  0%{
+    background-color: var(--bkclr);
+  }
+  100%{
+    color: white;
+    background-color: black;
+  }
 }

@@ -1,5 +1,6 @@
 //book object
 var id = 0;
+var undo = [];
 function book(title, author, pages, isRead){
     this.title = title;
     this.author = author
@@ -8,8 +9,11 @@ function book(title, author, pages, isRead){
     this.id = `B${id++}`; //RMDBS !!!
 }
 
-
-//6/24/21
+function makeBookCopy(b){
+    let x = new book(b.title, b.author, b.pages, b.isRead);
+    x.id = b.id;
+    return x;
+}
 
 const daLibrary = [
     new book("Divergent", "Veronica Roth", 487 , true),
@@ -39,23 +43,60 @@ function createBookCardNode(cardInfo, bookInfo){
 
     return div
 }
-
-function delBook(e){
-    let id = e.target.id
-    let card = document.getElementById(e.target.id)
-    card.remove();
-
-    let delIdx = 0;
+function findBookById(id){
+    let idx = 0;
     for(let i = 0; i < daLibrary.length; i++){
         if(id == daLibrary[i].id){
-            delIdx = i;
+            idx = i;
             break;
         }
     }
-
-    daLibrary.splice(delIdx, 1)
+    return idx;
+}
+function getBookById(id){
+    return daLibrary[findBookById(id)];
+}
+function delBookById(id){
+    let idx = findBookById(id);
+    daLibrary.splice(delIdx, 1);
 }
 
+//events!
+function delBook(e){
+    //frontend 
+    let id = e.target.getAttribute("data-id")
+    let card = document.querySelector(`div.book-card[data-id='${id}']`)
+    card.remove();
+
+    //array reflection
+    let delIdx = findBookById(id)
+    let u = daLibrary.splice(delIdx, 1)[0]
+    undo.push(u);
+}
+
+function shiftBook(e){
+    let id = e.explicitOriginalTarget.parentElement.getAttribute("data-id");
+    let copy = makeBookCopy(getBookById(id));
+    copy.isRead = !copy.isRead;
+    //copy is made
+
+    delBook(e)
+    //removed from old section
+
+    pushBook(copy);
+    daLibrary.push(copy);
+    //added onto display & memory
+}
+
+function undoDelete(e){
+    if(!undo.length){
+        return
+    }
+    let x = undo.splice(undo.length - 1, 1)[0]
+    pushBook(x)
+    daLibrary.push(x);
+}
+//events end
 function createBookCard(B){
     let main = document.createElement("div");
     main.classList.toggle("book-card");
@@ -78,11 +119,19 @@ function createBookCard(B){
     delKeyCont.appendChild(delKey) 
     main.appendChild(delKeyCont)
 
-    delKey.setAttribute('id', `${B.id}`)
-    main.setAttribute('id', `${B.id}`)
+    delKey.setAttribute('data-id', `${B.id}`)
+    main.setAttribute('data-id', `${B.id}`)
     //events
     delKey.addEventListener("click", delBook)
 
+    let moveBook = document.createElement('img');
+    moveBook.classList.toggle("shiftBook");
+    let moveBookStatus = (B.isRead) ? "down": "up"
+    let srcPath = `img/${(B.isRead) ? "down": "up"}.png`;
+    moveBook.setAttribute("src", srcPath);
+    main.appendChild(moveBook);
+    moveBook.addEventListener("click", shiftBook);
+    moveBook.setAttribute('data-id', `${B.id}`)
     return main
 }
 
@@ -121,4 +170,12 @@ function ValidateBookForm(){
     }
 }
 
-showBooks()
+function main(){
+    let undoDeleteLink = document.getElementById("undo")
+    undoDeleteLink.addEventListener("click", undoDelete)
+
+    showBooks()
+}
+
+main()
+//FIX ID --> DATA-id
