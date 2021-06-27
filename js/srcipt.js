@@ -87,7 +87,6 @@ function shiftBook(e){
 
     shiftflag = 1;
     delBook(e)
-
     //removed from old section
 
     pushBook(copy);
@@ -140,6 +139,18 @@ function createBookCard(B){
     main.appendChild(moveBook);
     moveBook.addEventListener("click", shiftBook);
     moveBook.setAttribute('data-id', `${B.id}`)
+
+    let gearImg = document.createElement('img');
+    gearImg.classList.toggle("model-img");
+    gearImg.classList.toggle("model");
+    gearImg.setAttribute("src", 'img/settings.png');
+    gearImg.setAttribute('data-id', `${B.id}`)
+    gearImg.setAttribute("data-modal-target", "#modal")
+    gearImg.addEventListener('click', displayModel);
+    main.appendChild(gearImg)
+
+
+    
     return main
 }
 
@@ -178,12 +189,64 @@ function ValidateBookForm(){
     }
 }
 
+var closeModalButtons;
+var overlay;
+
+function displayModel(e){
+    console.log(e.originalTarget.getAttribute("data-id"))
+    var model = document.querySelector(e.target.dataset.modalTarget)
+    if(model == null){
+        console.log("failure to display")
+        return
+    }
+    model.classList.add('active')
+    overlay.classList.add('active')
+}
+
+function closeModel(e){
+    let model = e.target.closest(".modal")
+    if(model == null){
+        console.log("failure to close")
+        return
+    }
+    model.classList.remove('active')
+    overlay.classList.remove('active')
+}
+
 function main(){
     let undoDeleteLink = document.getElementById("undo")
     undoDeleteLink.addEventListener("click", undoDelete)
 
     showBooks()
+
+    openModalButtons = document.querySelectorAll("[data-modal-target]")
+    closeModalButtons = document.querySelectorAll("[data-close-btn]")
+    overlay = document.getElementById('overlay')
+
+    /*
+    openModalButtons.forEach(btn => {
+        btn.addEventListener('click', displayModel);
+    })
+    */
+    
+    closeModalButtons.forEach(btn => {
+        btn.addEventListener('click', closeModel)
+    })
+    
+    overlay.addEventListener("click", () => {
+        const toClose = document.querySelectorAll(".modal.active")
+        toClose.forEach(btn => {
+            btn.classList.remove("active")
+        })
+        overlay.classList.remove('active')
+    })
+
 }
 
+//if __name__ == "__main__":
 main()
-//FIX ID --> DATA-id
+
+
+
+
+

@@ -184,22 +184,22 @@ body {
   animation-iteration-count: infinite;
 }
 @keyframes warning {
-    0%{
-        border-color: white(156, 154, 154);
-    }
-    50%{
-        border-color :black;
-    }
-    100%{
-        border-color: white;
-    }
+  0% {
+    border-color: white(156, 154, 154);
+  }
+  50% {
+    border-color: black;
+  }
+  100% {
+    border-color: white;
+  }
 }
 
 #not-read {
   margin-bottom: 25px;
 }
 
-.shiftBook{
+.shiftBook {
   width: 40px;
   height: 40px;
   position: absolute;
@@ -207,10 +207,10 @@ body {
   right: 20px;
 }
 
-.undo-cont{
+.undo-cont {
   position: relative;
 }
-#undo{
+#undo {
   position: absolute;
   left: var(--display-margin);
   bottom: 4px;
@@ -221,19 +221,137 @@ body {
   cursor: pointer;
 }
 
-#undo:hover{
+#undo:hover {
   animation-name: undo-fade;
-  animation-duration: .5s;
+  animation-duration: 0.5s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
 }
 
 @keyframes undo-fade {
-  0%{
+  0% {
     background-color: var(--bkclr);
   }
-  100%{
+  100% {
     color: white;
     background-color: black;
   }
+}
+
+/*settings*/
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: 200ms ease-in-out;
+  border: 2px solid black;
+  border-radius: 12px;
+  z-index: 2;
+  background-color: white;
+  width: 450px;
+  max-width: 80%;
+}
+.modal.active {
+  transform: translate(-50%, -50%) scale(1);
+}
+.modal-head {
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px black solid;
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+.close-btn {
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 10px 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+#overlay {
+  position: fixed;
+  opacity: 0;
+  transition: 200ms ease-in-out;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+}
+
+#overlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.model-form-input {
+  border: none;
+  background-color: var(--bkclr);
+  border-bottom: 1px solid var(--ftclr);
+  padding: 3px;
+  width: 100%;
+  outline: none;
+  font-size: 1rem;
+  font-weight: lighter;
+  color: rgb(51, 51, 51);
+  margin-bottom: 10px;
+}
+
+.model-form-label {
+  font-size: 1.5rem;
+  margin-top: 10px;
+  margin-bottom: 4px;
+}
+
+.modal-foot {
+  font-size: 1.4rem;
+  text-align: center;
+  border-top: 2px black solid;
+}
+#submit-model-info {
+  padding: 10px;
+  border: none;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  font-size: 1.4rem;
+  background: none;
+  padding: 5px;
+  border-bottom-right-radius:10px;
+  border-bottom-left-radius:10px;
+  font-weight: bold;
+}
+
+#submit-model-info:hover{
+  animation-name: model-sub-btn;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-duration: 0.35s;
+}
+
+@keyframes model-sub-btn {
+  0% {
+    color: black;
+    background-color: white;
+  }
+  100% {
+    color: white;
+    background-color: black;
+  }
+}
+
+.model-img{
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 55px;
+  right: 20px;
 }
