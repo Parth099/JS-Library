@@ -1,6 +1,6 @@
 :root {
   --side-width: 400px;
-  --bkclr: white;
+  --bkclr: #eaf8ff;
   --ftclr: black;
   --displayclr: black;
   --display-margin: 25px;
@@ -12,6 +12,9 @@ body {
   font-weight: 300;
   color: var(--ftclr);
   background-color: var(--bkclr);
+
+  margin: 0;
+  padding: 0;
 }
 
 /* for show */
@@ -19,7 +22,6 @@ body {
   border: 1px red solid;
 }
 .main-cont {
-  display: flex;
   min-height: 100vh;
 }
 .side-menu {
@@ -28,13 +30,16 @@ body {
   color: var(--ftclr);
   display: inline-flex;
   flex-direction: column;
-  position: sticky;
+  position: fixed;
   top: 0;
-  width: var(--side-width);
+  width: 0;
   flex-shrink: 0;
   align-items: center;
   justify-content: center;
   height: 100vh;
+  z-index: 1;
+  overflow-x: hidden;
+  transition: .5s;
 
   background: linear-gradient(270deg, #32de84, #00adff);
   background-size: 400% 400%;
@@ -53,8 +58,9 @@ body {
   }
 }
 .book-display {
-  width: calc(100vw - var(--side-width));
-  background-color: #eaf8ff;
+  margin-left: var(--display-margin);
+  position: relative;
+  transition: margin-left .5s;
 }
 .form-card {
   display: flex;
@@ -148,6 +154,7 @@ body {
   box-shadow: 0 5px 10px rgba(23, 23, 24, 0.63),
     0 15px 40px rgba(166, 173, 201, 0.2);
   background: linear-gradient(135deg, #cefae3, #ace1fa);
+  transition: 0.5s;
 }
 .book-info {
   display: block;
@@ -365,29 +372,18 @@ body {
   transform: scaleX(-1);
 }
 .slider-img {
-  display: none;
   width: 40px;
   height: 40px;
+  left: var(--display-margin);
   position: absolute;
-  top: 50%;
-  left: calc(var(--side-width) - 20px);
-}
-.slider-img:hover {
-  animation-name: shiftleft;
-  animation-duration: 1.5s;
-  animation-iteration-count: infinite;
+  display: inline;
+  z-index: 10;
+  cursor: pointer;
+  
 }
 
-@keyframes shiftleft {
-  0% {
-    left: calc(var(--side-width) - 20px);
-  }
-  50% {
-    left: calc(var(--side-width) - 40px);
-  }
-  100% {
-    left: calc(var(--side-width) - 20px);
-  }
+.slider-img:hover {
+  border-bottom: .5px gray solid;
 }
 
 fieldset.stats {

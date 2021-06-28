@@ -2,6 +2,7 @@
 var id = localStorage.length;
 var shiftflag = 0;
 var undo = [];
+var sideBar = 1;
 const daLibrary = []
 
 //book defi and methods
@@ -305,6 +306,26 @@ function getLocalStorage(){
         localStorageInit();
     }
 }
+function openNav() {
+    document.querySelector(".side-menu").style.width = "400px"
+    document.querySelector(".book-display").style.marginLeft = "400px";
+  }
+  
+function closeNav() {
+    document.querySelector(".side-menu").style.width = "0px"
+    document.querySelector(".book-display").style.marginLeft = "25px";
+}
+function navHandler(){
+    if(sideBar){
+        closeNav()
+        sideBar = 0;
+    }
+    else{
+        openNav()
+        sideBar = 1;
+    }
+}
+
 function main(){
     updateStats()
     let undoDeleteLink = document.getElementById("undo")
@@ -351,9 +372,9 @@ function main(){
     let slider = document.querySelector(".slider-img")
     slider.addEventListener('click', function(e){
         e.target.classList.toggle("faceing-right")
-        let x = document.querySelector(".side-menu");
-        x.style.display = "none"
     })
+
+    openNav() //landing page --> nav: open
 
 
 }
@@ -361,8 +382,6 @@ function main(){
 //if __name__ == "__main__":
 main()
 
-// document.querySelector(".side-menu").style.width = "400px"
-// document.querySelector(".book-display").style.marginLeft = "400px";
 
 
 
