@@ -54,6 +54,7 @@ body {
 }
 .book-display {
   width: calc(100vw - var(--side-width));
+  background-color: #eaf8ff;
 }
 .form-card {
   display: flex;
@@ -146,9 +147,12 @@ body {
 
   box-shadow: 0 5px 10px rgba(23, 23, 24, 0.63),
     0 15px 40px rgba(166, 173, 201, 0.2);
+  background: linear-gradient(135deg, #cefae3, #ace1fa);
 }
 .book-info {
+  display: block;
   color: rgb(46, 46, 46);
+  max-width: 165px;
 }
 .card-img {
   width: 40px;
@@ -325,12 +329,12 @@ body {
   font-size: 1.4rem;
   background: none;
   padding: 5px;
-  border-bottom-right-radius:10px;
-  border-bottom-left-radius:10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
   font-weight: bold;
 }
 
-#submit-model-info:hover{
+#submit-model-info:hover {
   animation-name: model-sub-btn;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
@@ -344,14 +348,65 @@ body {
   }
   100% {
     color: white;
+    color: rgb(54, 54, 54);
     background-color: black;
   }
 }
 
-.model-img{
+.model-img {
   width: 40px;
   height: 40px;
   position: absolute;
   top: 55px;
   right: 20px;
+}
+
+.faceing-right {
+  transform: scaleX(-1);
+}
+.slider-img {
+  display: none;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  left: calc(var(--side-width) - 20px);
+}
+.slider-img:hover {
+  animation-name: shiftleft;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes shiftleft {
+  0% {
+    left: calc(var(--side-width) - 20px);
+  }
+  50% {
+    left: calc(var(--side-width) - 40px);
+  }
+  100% {
+    left: calc(var(--side-width) - 20px);
+  }
+}
+
+fieldset.stats {
+  display: flex;
+  border: 1px solid rgb(150, 149, 149);
+  margin: var(--display-margin);
+  padding: 10px;
+  flex-direction: row;
+  justify-content: space-around;
+  background: linear-gradient(90deg, #edfaf3, #dbf2fd);
+}
+
+.stat-text {
+  color: black;
+  font-weight: bold;
+}
+
+.form-foot {
+  position: absolute;
+  bottom: 10px;
+  font-weight: 400;
 }

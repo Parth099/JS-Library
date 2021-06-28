@@ -22,8 +22,9 @@
                 <div class="side-menu-title">
                     <h1 id="menu-title">Add A Book</h1>
                 </div>
-
+            
                 <form class="form-card" action="">
+                    <img src="img/open.png" class="slider-img">
                     <label class="main-form-label" for="bk-ttl">Book Title</label>
                     <input class="main-form-input" type="text" id="bk-ttl">
 
@@ -50,6 +51,7 @@
                 </form>
             </div>
             <p class="form-info"></p>
+            <p class="form-foot">Local Storage Active</p>
         </div>
         <div class="book-display">
             <div class="undo-cont">  
@@ -57,6 +59,18 @@
                 <h1 class="display-title">DaLibrary</h1>
             </div>
 
+            <fieldset class="stats">
+                <legend> Book Stats </legend>
+                <div class="tBooks">
+                    Total books: <span id="tbooks-input" class="stat-text"></span>
+                </div>
+                <div class="rBooks">
+                    Books Read: <span id="rbooks-input" class="stat-text"></span>
+                </div>
+                <div class="uBooks">
+                    Books Unread: <span id="ubooks-input" class="stat-text"></span>
+                </div>
+            </fieldset>
 
             <h1 class="display-title smaller">Books Read</h1>
             <div class="center-grid">
