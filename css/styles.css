@@ -39,7 +39,7 @@ body {
   height: 100vh;
   z-index: 1;
   overflow-x: hidden;
-  transition: .5s;
+  transition: 0.5s;
 
   background: linear-gradient(270deg, #32de84, #00adff);
   background-size: 400% 400%;
@@ -60,7 +60,7 @@ body {
 .book-display {
   margin-left: var(--display-margin);
   position: relative;
-  transition: margin-left .5s;
+  transition: margin-left 0.5s;
 }
 .form-card {
   display: flex;
@@ -305,7 +305,7 @@ body {
 
 .model-form-input {
   border: none;
-  background-color: var(--bkclr);
+  background-color: white;
   border-bottom: 1px solid var(--ftclr);
   padding: 3px;
   width: 100%;
@@ -355,7 +355,6 @@ body {
   }
   100% {
     color: white;
-    color: rgb(54, 54, 54);
     background-color: black;
   }
 }
@@ -379,11 +378,10 @@ body {
   display: inline;
   z-index: 10;
   cursor: pointer;
-  
 }
 
 .slider-img:hover {
-  border-bottom: .5px gray solid;
+  border-bottom: 0.5px gray solid;
 }
 
 fieldset.stats {
